@@ -7,11 +7,12 @@ class parachute {
   apply(compiler) {
 
     compiler.hooks.beforeCompile.tap("run_before_compiling", () => {
+      console.log('test yalc');
       if (process.env.HAS_WRITTEN == 'false') {
         const allModulesDir = fs.readdirSync('./src/modules');
 
         allModulesDir.forEach(function (module, index) {
-          var fieldsFile = require('../src/modules/' + module + '/fields.js');
+          var fieldsFile = require('../../../src/modules/' + module + '/fields.js');
 
           // console.log(fieldsFile.getJson());
 
