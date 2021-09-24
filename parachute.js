@@ -7,10 +7,18 @@ class parachute {
   apply(compiler) {
 
     compiler.hooks.beforeCompile.tap("run_before_compiling", () => {
-      console.log('test yalc');
       if (process.env.HAS_WRITTEN == 'false') {
         const allModulesDir = fs.readdirSync('./src/modules');
 
+        // Looks for file and removes it if it's in there
+        // Not sure why this is showing up in some build processes. 
+        if (allModulesDir.includes('.DS_Store')) {
+          allModulesDir.splice(allModulesDir.indexOf('.DS_Store'), 1);
+        };
+
+        // Loop through all modules and generate fields.json file
+        // Currently modules must contain a fields.js file for this to work. 
+        // Build process will fail if this is not included.
         allModulesDir.forEach(function (module, index) {
           var fieldsFile = require('../../../src/modules/' + module + '/fields.js');
 
