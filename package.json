@@ -1,6 +1,6 @@
 {
   "name": "@jazzyclimber/parachute",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Enables creation of reusable json files that can be added into any hubspot module",
   "main": "parachute.js",
   "scripts": {
