@@ -20,16 +20,21 @@ class parachute {
         // Currently modules must contain a fields.js file for this to work. 
         // Build process will fail if this is not included.
         allModulesDir.forEach(function (module, index) {
-          var fieldsFile = require('../../../src/modules/' + module + '/fields.js');
+          var path = '../../../src/modules/' + module + '/fields.js'
 
-          // console.log(fieldsFile.getJson());
+          //Check to see if there is a fields.js file.
+          if (fs.existsSync(path)) {
+            var fieldsFile = require(path);
 
-          fs.writeFile('./src/modules/' + module + '/fields.json', fieldsFile.getJson(), function (err) {
-            if (err) return console.log(err);
-          });
+            // console.log(fieldsFile.getJson());
 
-          clearCache('./src/modules/' + module + '/fields.js');
-          clearCache('.*\/src\/json\/.*\.json');
+            fs.writeFile(path, fieldsFile.getJson(), function (err) {
+              if (err) return console.log(err);
+            });
+
+            clearCache('./src/modules/' + module + '/fields.js');
+            clearCache('.*\/src\/json\/.*\.json');
+          }
         });
         process.env.HAS_WRITTEN = 'true';
       } else {
