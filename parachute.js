@@ -36,8 +36,9 @@ class parachute {
               if (err) return console.log(err);
             });
 
-            clearCache('./src/modules/' + module + '/fields.js');
-            clearCache('.*\/src\/json\/.*\.json');
+            clearCache('../../../src/modules/' + module + '/fields.js');
+            // clearCache('.*\/src\/json\/.*\.json');
+            clearCache('../../../src/json/animations.json');
           }
         });
         process.env.HAS_WRITTEN = 'true';
