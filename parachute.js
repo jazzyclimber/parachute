@@ -25,8 +25,9 @@ class parachute {
           //Check to see if there is a fields.js file.
           if (fs.existsSync(path)) {
             var fieldsFile = require(path);
-
-            // console.log(fieldsFile.getJson());
+            console.log('+++++++++++++++++++++');
+            console.log(fieldsFile.getJson());
+            console.log('+++++++++++++++++++++');
 
             fs.writeFile('../../../src/modules/' + module + '/fields.json', fieldsFile.getJson(), function (err) {
               if (err) return console.log(err);
