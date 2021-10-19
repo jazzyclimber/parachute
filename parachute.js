@@ -28,7 +28,7 @@ class parachute {
 
             // console.log(fieldsFile.getJson());
 
-            fs.writeFile(path, fieldsFile.getJson(), function (err) {
+            fs.writeFile('../../../src/modules/' + module + '/fields.json', fieldsFile.getJson(), function (err) {
               if (err) return console.log(err);
             });
 
