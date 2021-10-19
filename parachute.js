@@ -7,6 +7,7 @@ class parachute {
   apply(compiler) {
 
     compiler.hooks.beforeCompile.tap("run_before_compiling", () => {
+      // console.log('+++++++++++++++++++++');
       if (process.env.HAS_WRITTEN == 'false') {
         const allModulesDir = fs.readdirSync('./src/modules');
 
@@ -20,16 +21,18 @@ class parachute {
         // Currently modules must contain a fields.js file for this to work. 
         // Build process will fail if this is not included.
         allModulesDir.forEach(function (module, index) {
-          var path = '../../../src/modules/' + module + '/fields.js'
+          // console.log('+++++++++++++++++++++');
+          // console.log('module:', module);
+          var path = './src/modules/' + module + '/fields.js'
 
           //Check to see if there is a fields.js file.
           if (fs.existsSync(path)) {
-            var fieldsFile = require(path);
-            console.log('+++++++++++++++++++++');
-            console.log(fieldsFile.getJson());
-            console.log('+++++++++++++++++++++');
+            var fieldsFile = require("../../." + path);
+            // console.log('+++++++++++++++++++++');
+            // console.log(fieldsFile.getJson());
+            // console.log('+++++++++++++++++++++');
 
-            fs.writeFile('../../../src/modules/' + module + '/fields.json', fieldsFile.getJson(), function (err) {
+            fs.writeFile('./src/modules/' + module + '/fields.json', fieldsFile.getJson(), function (err) {
               if (err) return console.log(err);
             });
 
